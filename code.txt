@@ -1,0 +1,85 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+ class assignment{
+     
+ 
+
+
+    // a class to represent job
+    static class Job 
+    {
+        int start;
+        int end;
+        int earn;
+        
+       public int getstart() { return start; }
+    public void setstart(int start) {
+        this.start= start;
+    }
+ 
+    public int end() { return end; }
+    public void setend(int end) {
+        this.end = end;
+    }
+ 
+    public int getearn() { return earn; }
+    public void setearn(int earn) {
+        this.earn = earn;
+    }
+    public static Comparator<Job> jobearn = new Comparator<Job>() {
+         public int compare(Job s1, Job s2) {
+ 
+            int earn1 = s1.getearn();
+            int earn2 = s2.getearn();
+ 
+            
+            return earn2 - earn1;
+         }
+    };
+ 
+}
+
+     
+      static void jobremaining(ArrayList<Job> arr)
+       {
+           int rem=0;
+            Collections.sort(arr,Job.jobearn);
+            arr.remove(0);
+            for (Job tot:arr)
+            {
+                rem=rem+tot.earn;
+            }
+            int size=arr.size();
+            System.out.println("Remaining Task:"+size+"\n");
+            System.out.println("Earnings:"+rem);
+            
+           
+       }
+
+
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner( System.in );
+        System.out.println("enter nummber of jobs:");
+        int n = input.nextInt();
+        System.out.println("Enter job start time, end time, and earnings");
+          ArrayList<Job> arr = new ArrayList<Job>();
+        for(int i=0;i<n;i++)
+        {
+       
+          Job job=new Job();
+          job.setstart(input.nextInt());
+           job.setend(input.nextInt());
+           job.setearn(input.nextInt());
+           arr.add(job);
+          
+          
+        }
+         jobremaining(arr);
+        
+     
+     
+     }
+
+}
